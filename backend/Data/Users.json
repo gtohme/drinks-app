@@ -1,0 +1,43 @@
+[
+  {
+    "firstName": "Gaya",
+    "lastName": "Tohme",
+    "email": "tohme@gmail.com",
+    "favorites": [
+      {
+        "ids": "11007",
+        "comments": "Too sweet, less sugar next time",
+        "liked": "true"
+      },
+      { "ids": "11001", "comments": "Double the vodka ", "liked": "true" },
+      { "ids": "17222", "comments": "Very sour", "liked": "true" }
+    ],
+    "id": 1
+  },
+  {
+    "firstName": "Johnson",
+    "lastName": "Chang",
+    "email": "chang@gmail.com",
+    "favorites": [
+      {
+        "ids": "17225",
+        "comments": "Too sweet, less sugar next time",
+        "liked": "true"
+      },
+      { "ids": "17837", "comments": "Double the syrup ", "liked": "true" },
+      { "ids": "13938", "comments": "LOVE!!", "liked": "true" }
+    ],
+    "id": 2
+  },
+  {
+    "firstName": "Minh",
+    "lastName": "Trinh",
+    "email": "trinh@gmail.com",
+    "favorites": [
+      { "ids": "13332", "comments": "not strong enough", "liked": "true" },
+      { "ids": "11149", "comments": "Double the gin ", "liked": "true" },
+      { "ids": "17195", "comments": "Very bitter", "liked": "true" }
+    ],
+    "id": 3
+  }
+]
