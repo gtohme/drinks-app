@@ -1,26 +1,34 @@
 import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
+import { CgProfile } from 'react-icons/cg';
+import Burger from './Burger';
 
 const Header = () => {
   return (
-    <Wrapper>
-      <Logolink to='/'>
-        <Logo>Tipsy Lab</Logo>
-      </Logolink>
-      <Loginlink to='/login'>
-        <Login>LOG IN</Login>
-      </Loginlink>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Logolink to='/'>
+          <Logo>MIXOLOGY</Logo>
+        </Logolink>
+        <Loginlink to='/login'>
+          {/* <Login>LOG IN</Login> */}
+          <Login>
+            <CgProfile />
+          </Login>
+        </Loginlink>
+      </Wrapper>
+      <Burger />
+    </>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 75px;
+  height: 50px;
   padding: 20px;
-  background-color: #000000;
-  color: #fca311;
+  background-color: white;
+
   align-items: center;
   position: sticky;
   top: 0;
@@ -28,16 +36,32 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.div`
-  font-family: 'Architects Daughter', cursive;
-  font-size: 50px;
+  font-family: 'Zen Loop', cursive;
+  font-size: 80px;
+  /* color: #fca311; */
+  color: #3f37c9;
+  &:hover {
+    transform: scale(1.03);
+  }
 `;
 const Login = styled.div`
-  font-family: 'Architects Daughter', cursive;
-  font-size: 20px;
+  margin-right: 70px;
+  font-family: 'Poiret One', cursive;
+  font-size: 30px;
+  color: #3f37c9;
+  &:hover {
+    transform: scale(1.04);
+  }
 `;
 
-const Logolink = styled(NavLink)``;
+const Logolink = styled(NavLink)`
+  text-decoration: none;
+`;
 
-const Loginlink = styled(NavLink)``;
+const Loginlink = styled(NavLink)`
+  text-decoration: none;
+`;
+
+//object-fit: cover
 
 export default Header;

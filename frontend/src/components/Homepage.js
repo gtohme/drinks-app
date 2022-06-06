@@ -1,19 +1,24 @@
 import styled from 'styled-components';
+import SearchBar from './SearchBar';
 
 const Homepage = () => {
   return (
     <>
-      <Body2>Homepage helwefhoweifhewiofrhoewifhwoief siodfhndhnf</Body2>
+      <SearchBar />
+      {/* <Body></Body> */}
     </>
   );
 };
 
-const Body2 = styled.div`
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-size: 20px;
-  background-color: #e5e5e5;
-  height: 700px;
-`;
+// const Body = styled.div`
+//   font-family: 'Lato', sans-serif;
+//   font-weight: 300;
+//   font-size: 20px;
+
+//   background-color: #f8f9fa;
+//   width: 100%;
+//   height: 700px;
+//   margin-top: 20px;
+// `;
 
 export default Homepage;

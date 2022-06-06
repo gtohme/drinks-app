@@ -6,8 +6,9 @@ import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
+// import DropDownMenu from './components/DropDownMenu';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SignIn from './components/SignIn';
+import LogIn from './components/LogIn';
 
 function App() {
   return (
@@ -15,11 +16,12 @@ function App() {
       <BrowserRouter>
         <GlobalStyles />
         <Header />
+        {/* <DropDownMenu /> */}
         <RoutesWrapper>
           <Routes>
             <Route path='/' element={<Homepage />} />
 
-            <Route path='/Signin' element={<SignIn />} />
+            <Route path='/Login' element={<LogIn />} />
           </Routes>
         </RoutesWrapper>
       </BrowserRouter>
@@ -30,6 +32,7 @@ function App() {
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
+  //max-width:1000px;
 `;
 
 const RoutesWrapper = styled.div`

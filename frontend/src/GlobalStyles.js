@@ -38,7 +38,11 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: #e5e5e5;
+	/* background-color: #f8f9fa;
+	background-color: #fffdfb; */
+	background-color: #fffdfb;
+	background-color: white;
+
 }
 ol, ul {
 	list-style: none;

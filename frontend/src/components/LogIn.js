@@ -1,12 +1,74 @@
-const SignIn = () => {
+import styled from 'styled-components';
+
+const LogIn = () => {
   return (
     <>
-      <div>SIGN IN</div>
+      <Div1>
+        <Wrapper>
+          <Div>
+            <Title>Log In</Title>
+            <Form>
+              <Subheading>Email</Subheading>
+              <Input></Input>
+              <Subheading>Password</Subheading>
+              <Input></Input>
+              <Button>Start</Button>
+            </Form>
+          </Div>
+        </Wrapper>
+      </Div1>
     </>
   );
 };
 
-export default SignIn;
+const Wrapper = styled.div`
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Lato', sans-serif; ;
+`;
+const Div1 = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto;
+`;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+`;
+const Title = styled.div`
+  font-size: 35px;
+  margin: auto;
+`;
+
+const Form = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  width: 250px;
+  height: 30px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+`;
+const Subheading = styled.div`
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+const Button = styled.button`
+  margin-top: 15px;
+  background-color: orange;
+  border-radius: 15px;
+  padding: 7px 115px;
+  border: none;
+  font-size: 15px;
+`;
+export default LogIn;
 // import styled from "styled-components";
 // import { useState, useEffect, useContext } from "react";
 // import { UserContext } from "./UserContext";

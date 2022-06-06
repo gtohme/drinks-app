@@ -1,4 +1,5 @@
 // import styled from 'styled-components';
+///IMAGE FROM PUBLIC/IMAGES]
 
 // // import { FcVlc } from "react-icons/fc";
 
