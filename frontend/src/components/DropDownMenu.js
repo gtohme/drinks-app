@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ open }) => {
   return (
     <Bar>
-      <Ul>
-        <li>Ingredients</li>
-        <li>A-Z</li>
-        <li>random</li>
-        <li>glasses</li>
-        <li>name</li>
-        <li>idk</li>
+      <Ul open={open}>
+        <Div>SEARCH</Div>
+        <Li>Random</Li>
+        <Li>Ingredients</Li>
+        <Li>A-Z</Li>
+        <Li>Glasses</Li>
+        <Li>Name</Li>
       </Ul>
     </Bar>
   );
@@ -17,13 +17,35 @@ const DropDownMenu = () => {
 const Bar = styled.nav`
   display: flex;
   justify-content: flex-end;
-  margin-right: 10px;
 `;
+const Div = styled.div`
+  padding: 15px 15px;
+  background-color: transparent;
+  font-size: larger;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  background-color: black;
+  color: white;
+`;
+
 const Ul = styled.ul`
+  width: 125px;
+  list-style: none;
   display: flex;
   flex-flow: column nowrap;
-  background-color: orange;
-  position: fixed;
-  /* transform:  */
+
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
+  transition: transform 0.3s ease-in-out;
 `;
+const Li = styled.li`
+  padding: 15px 10px;
+  background-color: transparent;
+  font-size: larger;
+  font-family: 'Lato', sans-serif;
+  &:hover {
+    background-color: #f7f5f0;
+    border-radius: 5px;
+  }
+`;
+
 export default DropDownMenu;

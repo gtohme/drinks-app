@@ -37,7 +37,7 @@ const Div = styled.div`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 60px;
 `;
 const Wrapper = styled.div`
   display: flex;

@@ -1,14 +1,11 @@
-// yarn install
-// yarn add react-router-dom
-//yarn add styled-components
-// yarn start
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
+import Footer from './components/Footer';
 // import DropDownMenu from './components/DropDownMenu';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LogIn from './components/LogIn';
+import Random from './components/Random';
 
 function App() {
   return (
@@ -16,14 +13,16 @@ function App() {
       <BrowserRouter>
         <GlobalStyles />
         <Header />
-        {/* <DropDownMenu /> */}
         <RoutesWrapper>
           <Routes>
             <Route path='/' element={<Homepage />} />
-
-            <Route path='/Login' element={<LogIn />} />
+            <Route path='/random' element={<Random />} />
+            {/* <Route path='/alphabetical' element={<Alphabetical />} />
+             <Route path='/ingredients' element={<Ingredients />} />
+             <Route path='/glasses' element={<Glasses />} /> */}
           </Routes>
         </RoutesWrapper>
+        <Footer />
       </BrowserRouter>
     </Wrapper>
   );

@@ -13,10 +13,11 @@ const Burger = () => {
         <div />
         <div />
       </BurgerMenu>
-      <DropDownMenu open={open} onClick={() => setOpen(!open)} />
+      <DropDownMenu open={open} />
     </>
   );
 };
+
 const BurgerMenu = styled.div`
   color: #3f37c9;
   width: 2rem;
@@ -27,12 +28,17 @@ const BurgerMenu = styled.div`
   display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
+  z-index: 20;
+
+  &:hover {
+    transform: scale(1.04);
+  }
 
   div {
-    color: #3f37c9;
+    /* color: #3f37c9; */
     width: 2rem;
     height: 0.25rem;
-    background-color: black;
+    background-color: white;
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s linear;

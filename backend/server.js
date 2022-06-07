@@ -3,7 +3,17 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const PORT = 4000;
+const PORT = 8000;
+
+const {
+  getDrinksByName,
+  getDrinksByFirstLetter,
+  getIngredientByName,
+  getDrinksDetailsById,
+  getRandomDrink,
+  // getFilterDrinkAlcoholOrNon,
+  // getCategory,
+} = require('./handlers');
 
 express()
   .use(function (req, res, next) {
@@ -18,12 +28,37 @@ express()
     next();
   })
   .use(morgan('tiny'))
-
+  .use(express.static('./server/assets'))
   .use(express.json())
+  .use(express.urlencoded({ extended: false }))
+  .use('/', express.static(__dirname + '/'))
 
-  // REST endpoints
+  // REST endpoints?
+  .get('/api/get-drinks-name/:name', getDrinksByName)
+  .get('/api/get-drinks-letter/:letter', getDrinksByFirstLetter)
+  .get('/api/get-ingredients-name/:ingredient', getIngredientByName)
+  .get('/api/get-drinks-details/:id', getDrinksDetailsById)
+  .get('/api/get-random-drink', getRandomDrink)
+  // .get('/api/filter-alcohol-non', getFilterDrinkAlcoholOrNon)
+  // .get('/api/get-category/:category', getCategory)
+
+  // .get('/api/get-bodylocations', getBodyLocations)
+  // .get('/api/get-bodylocation/:location', getBodyLocation)
+
+  // .post('/api/get-item-details', getItemDetails)
+  // .post('/api/create-order', createOrder)
+  // .delete('/api/delete-order', deleteOrder)
   .get('*', (req, res) => {
-    res.status(200).json({ message: 'OK' });
+    res.status(404).json({
+      status: 404,
+      message: 'This is obviously not what you are looking for.',
+    });
   })
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
+
+// List the categories, glasses, ingredients or alcoholic filters
+// www.thecocktaildb.com/api/json/v1/1/list.php?c=list
+// www.thecocktaildb.com/api/json/v1/1/list.php?g=list
+// www.thecocktaildb.com/api/json/v1/1/list.php?i=list
+// www.thecocktaildb.com/api/json/v1/1/list.php?a=list
