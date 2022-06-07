@@ -1,19 +1,23 @@
 import styled from 'styled-components';
+import Footer from './Footer';
 import Random from './Random';
 import SearchBar from './SearchBar';
 
 const Homepage = () => {
   return (
-    <BigDiv>
-      <Div>
-        <Quote1>Help me help you</Quote1>
-        <Quote2>find your next drink</Quote2>
+    <>
+      <BigDiv>
+        <Div>
+          <Quote1>Help me help you</Quote1>
+          <Quote2>find your next drink</Quote2>
 
-        <SearchBar />
-        {/* <Body></Body> */}
-        <Random />
-      </Div>
-    </BigDiv>
+          <SearchBar />
+          {/* <Body></Body> */}
+          {/* <Random /> */}
+        </Div>
+      </BigDiv>
+      <Footer />
+    </>
   );
 };
 const BigDiv = styled.div`

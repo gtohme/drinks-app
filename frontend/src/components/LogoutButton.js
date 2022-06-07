@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 const LogoutButton = () => {
   const { logout, isAuthenticated } = useAuth0();
-
+  console.log(isAuthenticated);
   return (
     isAuthenticated && (
       <>
-        <Button onClick={() => logout()}>
+        <Button id='logoutbutton' onClick={() => logout()}>
           <AiOutlineLogout />
         </Button>
       </>

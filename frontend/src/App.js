@@ -6,6 +6,10 @@ import Homepage from './components/Homepage';
 import Footer from './components/Footer';
 // import DropDownMenu from './components/DropDownMenu';
 import Random from './components/Random';
+import Alphabetical from './components/DrinkDetails/Alphabetical';
+import Ingredients from './components/DrinkDetails/Ingredients';
+import Glasses from './components/DrinkDetails/Glasses';
+import NameOfDrinks from './components/DrinkDetails/NamesOfDrinks';
 
 function App() {
   return (
@@ -17,12 +21,12 @@ function App() {
           <Routes>
             <Route path='/' element={<Homepage />} />
             <Route path='/random' element={<Random />} />
-            {/* <Route path='/alphabetical' element={<Alphabetical />} />
-             <Route path='/ingredients' element={<Ingredients />} />
-             <Route path='/glasses' element={<Glasses />} /> */}
+            <Route path='/alphabetical' element={<Alphabetical />} />
+            <Route path='/ingredients' element={<Ingredients />} />
+            <Route path='/glasses' element={<Glasses />} />
+            <Route path='/name' element={<NameOfDrinks />} />
           </Routes>
         </RoutesWrapper>
-        <Footer />
       </BrowserRouter>
     </Wrapper>
   );

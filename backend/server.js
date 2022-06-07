@@ -15,6 +15,14 @@ const {
   // getCategory,
 } = require('./handlers');
 
+const {
+  addUser,
+  getUsers,
+  getUser,
+  updatingFavourites,
+  updatingComments,
+} = require('./handlersUsers');
+
 express()
   .use(function (req, res, next) {
     res.header(
@@ -42,11 +50,12 @@ express()
   // .get('/api/filter-alcohol-non', getFilterDrinkAlcoholOrNon)
   // .get('/api/get-category/:category', getCategory)
 
-  // .get('/api/get-bodylocations', getBodyLocations)
-  // .get('/api/get-bodylocation/:location', getBodyLocation)
-
+  .get('/api/get-users', getUsers)
+  .get('/api/get-user', getUser)
+  .post('/api/add-user', addUser)
+  .patch('/api/update-favourites', updatingFavourites)
+  .patch('/api/update-comments', updatingComments)
   // .post('/api/get-item-details', getItemDetails)
-  // .post('/api/create-order', createOrder)
   // .delete('/api/delete-order', deleteOrder)
   .get('*', (req, res) => {
     res.status(404).json({

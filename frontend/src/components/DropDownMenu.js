@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const DropDownMenu = ({ open }) => {
   return (
     <Bar>
       <Ul open={open}>
         <Div>SEARCH</Div>
-        <Li>Random</Li>
-        <Li>Ingredients</Li>
-        <Li>A-Z</Li>
-        <Li>Glasses</Li>
-        <Li>Name</Li>
+        <NavigationLink to='/random'>Random</NavigationLink>
+        <NavigationLink to='/alphabetical'>A-Z</NavigationLink>
+        <NavigationLink to='/ingredients'>Ingredients</NavigationLink>
+        <NavigationLink to='/glasses'>Glasses</NavigationLink>
+        <NavigationLink to='/name'>Name</NavigationLink>
       </Ul>
     </Bar>
   );
@@ -17,6 +18,8 @@ const DropDownMenu = ({ open }) => {
 const Bar = styled.nav`
   display: flex;
   justify-content: flex-end;
+  margin-top: 350px;
+  margin-right: -20px;
 `;
 const Div = styled.div`
   padding: 15px 15px;
@@ -37,7 +40,9 @@ const Ul = styled.ul`
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in-out;
 `;
-const Li = styled.li`
+const NavigationLink = styled(NavLink)`
+  cursor: pointer;
+  text-decoration: none;
   padding: 15px 10px;
   background-color: transparent;
   font-size: larger;
