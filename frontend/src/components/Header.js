@@ -7,7 +7,7 @@ import LogoutButton from './LogoutButton';
 
 const Header = () => {
   return (
-    <>
+    <BigDiv>
       <Wrapper>
         <Logolink to='/'>
           <Logo>MIXOLOGY</Logo>
@@ -18,20 +18,22 @@ const Header = () => {
         <LogoutButton />
         <Burger />
       </Wrapper>
-    </>
+    </BigDiv>
   );
 };
-
+const BigDiv = styled.div`
+  position: fixed;
+  top: 0;
+`;
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   height: 50px;
   padding: 20px;
   background-color: black;
-
+  width: 100vw;
   align-items: center;
-  /* position: sticky;
-  top: 0; */
+
   box-shadow: 0px 5px 16px -5px rgba(0, 0, 0, 0.5);
 `;
 

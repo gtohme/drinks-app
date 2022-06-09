@@ -20,13 +20,15 @@ const Footer = () => {
   );
 };
 const Wrapper = styled.div`
+  position: fixed;
+  bottom: 0;
   display: flex;
   justify-content: center;
+  flex: 1; ///not sure....
   gap: 30px;
-  position: absolute;
-  bottom: 0;
+
   width: 100%;
-  height: 75px;
+  height: 100px;
   background-color: black;
 `;
 const Div = styled.div`

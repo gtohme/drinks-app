@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { CgProfile } from 'react-icons/cg';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 const LoginButton = () => {
-  let Navigate = useNavigate();
-
+  // let Navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState();
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
   console.log('user', user);
 

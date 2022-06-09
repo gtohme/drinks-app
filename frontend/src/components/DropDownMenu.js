@@ -47,6 +47,7 @@ const NavigationLink = styled(NavLink)`
   background-color: transparent;
   font-size: larger;
   font-family: 'Lato', sans-serif;
+  color: black;
   &:hover {
     background-color: #f7f5f0;
     border-radius: 5px;

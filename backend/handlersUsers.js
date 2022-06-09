@@ -82,37 +82,40 @@ const addUser = async (req, res) => {
       })
     : res.status(404).json({ status: 404, message: 'User was already added!' });
 };
-
 const updatingFavourites = async (req, res) => {
   let favArray = [];
+  console.log('favourites');
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
 
   const db = client.db('drinks');
-  const result = await db.collection('users').findOne({ email: email });
-  if (!result.favourites) {
-    favArray = [{ id: req.params.id, comment: '' }];
-  } else if (result.favourites.some((el) => el.id === req.params.id)) {
-    favArray = result.favourites.filter((el) => el.id !== req.params.id);
+  const result = await db
+    .collection('users')
+    .findOne({ email: req.query.email });
+  console.log(result);
+  if (!result.favourites || result.favourites.length === 0) {
+    favArray = [{ id: req.query.id, comment: '' }];
+  } else if (result.favourites.some((el) => el.id === req.query.id)) {
+    favArray = result.favourites.filter((el) => el.id !== req.query.id);
   } else {
-    favArray = [...result.favourites].push([
-      { id: req.params.id, comment: '' },
-    ]);
+    favArray = [...result.favourites, { id: req.query.id, comment: '' }];
   }
   const updatedResult = await db
     .collection('users')
-    .updateOne({ email: email }, { $set: { favourites: favArray } });
+    .updateOne({ email: req.query.email }, { $set: { favourites: favArray } });
 
+  client.close();
+
+  // console.log('whats going on', updatedResult);
   updatedResult.modifiedCount === 1
     ? res
         .status(200)
         .json({ status: 200, data: favArray, message: 'updated faves' })
     : res.status(404).json({ status: 404, data: 'Not Found' });
-
-  client.close();
 };
+
 const updatingComments = async (req, res) => {
-  let comment = [];
+  const { comment, id } = req.body;
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
 
@@ -120,16 +123,17 @@ const updatingComments = async (req, res) => {
 
   const result = await db
     .collection('users')
-    .updateOne({ email: email }, { $set: { id: id, comment: comment } });
+    // .updateOne({ email: email }, { $set: { id: id, comment: comment } });
+    // .updateOne(
+    //   { email: email },
+    //   { $set: favArray[{ id: id, comment: comment }] }
+    // );
+    .updateOne(
+      { email: email },
+      { $push: { favourites: { id: id, comment: comment } } }
+    );
 
-  // const newComment = {
-  //   $set: {
-  //     id: id,
-  //     comment: comment,
-  //   },
-  // };
-
-  comment.modifiedCount === 1
+  result.modifiedCount === 1
     ? res
         .status(200)
         .json({ status: 200, data: comment, message: 'updated comment' })

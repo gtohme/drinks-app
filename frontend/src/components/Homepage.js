@@ -16,12 +16,13 @@ const Homepage = () => {
           {/* <Random /> */}
         </Div>
       </BigDiv>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
 const BigDiv = styled.div`
   margin: auto;
+  margin-top: 100px;
 `;
 const Div = styled.div`
   display: flex;
