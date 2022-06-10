@@ -95,6 +95,8 @@ const Alphabetical = () => {
 };
 const BigDiv = styled.div`
   margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Grid = styled.div`

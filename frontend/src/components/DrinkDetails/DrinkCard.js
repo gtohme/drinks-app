@@ -51,7 +51,7 @@ const DrinkCard = ({ drink }) => {
             </li>
           </ul>
           <div>Instructions</div>
-          <div>{drink.strInstructions}</div>
+          <Instructions>{drink.strInstructions}</Instructions>
           <ButtonLike onClick={handleLike}>
             <BsHeart />
           </ButtonLike>
@@ -62,7 +62,9 @@ const DrinkCard = ({ drink }) => {
 };
 const Wrapper = styled.div`
   /* background-color: black; */
-  background-color: #f7f5f0;
+  /* background-color: #f7f5f0; */
+  background-color: #f3eff0;
+  /* background-color: #fcf7f6; */
   /* color: white; */
   color: black;
   width: 400px;
@@ -71,24 +73,27 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 const BigDiv = styled.div`
-  margin: auto;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   font-family: 'Lato', sans-serif;
   font-size: 20px;
+  border: 3px solid black;
+  margin-bottom: 100px;
 `;
 const Title = styled.div`
   font-family: 'Limelight', cursive;
 
-  font-family: 'Poiret One', cursive;
+  /* font-family: 'Poiret One', cursive; */
 
-  font-family: 'Voltaire', sans-serif;
+  /* font-family: 'Voltaire', sans-serif; */
 
-  font-size: 50px;
+  font-size: 40px;
 `;
 
 const Img = styled.img`
@@ -96,9 +101,12 @@ const Img = styled.img`
 `;
 const ButtonLike = styled.button`
   background-color: transparent;
-  color: white;
+  color: red;
   border: none;
   font-size: 30px;
+`;
+const Instructions = styled.div`
+  font-size: 14px;
 `;
 
 export default DrinkCard;

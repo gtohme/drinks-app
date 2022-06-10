@@ -32,7 +32,9 @@ const getUser = async (req, res) => {
   await client.connect();
 
   const db = client.db('drinks');
-  const result = await db.collection('users').findOne({ id: req.params.id });
+  const result = await db
+    .collection('users')
+    .findOne({ email: req.params.email });
 
   result
     ? res.status(200).json({ status: 200, data: result })
@@ -115,7 +117,7 @@ const updatingFavourites = async (req, res) => {
 };
 
 const updatingComments = async (req, res) => {
-  const { comment, id } = req.body;
+  const { email, id, comment } = req.body;
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
 

@@ -116,7 +116,7 @@ const Random = () => {
 };
 const BigDiv = styled.div`
   margin: auto;
-  margin-top: 50px;
+  margin-top: 120px;
   display: flex;
   justify-content: center;
   flex-direction: column;
