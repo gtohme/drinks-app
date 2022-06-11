@@ -8,7 +8,6 @@ const LoginButton = () => {
   // let Navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState();
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
-  console.log('user', user);
 
   useEffect(() => {
     if (isAuthenticated) {

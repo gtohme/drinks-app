@@ -15,10 +15,10 @@ const Header = () => {
             <Logo>MIXOLOGY</Logo>
           </Logolink>
           <LoginButton />
-          <LogoutButton />
+          {/* <LogoutButton /> */}
         </LogoLogin>
         <NavLink to='/profile'>
-          <button>P</button>
+          <ProfileButton>My Profile</ProfileButton>
         </NavLink>
 
         <Burger />
@@ -65,7 +65,13 @@ const Logolink = styled(NavLink)`
   text-decoration: none;
   height: 30px;
 `;
-
+const ProfileButton = styled.button`
+  background-color: black;
+  color: white;
+  font-family: 'Zen Loop', cursive;
+  font-size: 30px;
+  margin-right: 20px;
+`;
 //object-fit: cover
 
 export default Header;

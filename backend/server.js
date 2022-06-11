@@ -21,6 +21,7 @@ const {
   getUser,
   updatingFavourites,
   updatingComments,
+  getComments,
 } = require('./handlersUsers');
 
 express()
@@ -55,6 +56,7 @@ express()
   .post('/api/add-user', addUser)
   .post('/api/update-favourites', updatingFavourites)
   .post('/api/update-comments', updatingComments)
+  .get('/api/get-comments', getComments)
   ////.get("/api/profile")
   // .post('/api/get-item-details', getItemDetails)
   // .delete('/api/delete-order', deleteOrder)

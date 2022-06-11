@@ -19,7 +19,7 @@ const Bar = styled.nav`
   display: flex;
   justify-content: flex-end;
   margin-top: 350px;
-  margin-right: -20px;
+  margin-right: -10px;
 `;
 const Div = styled.div`
   padding: 15px 15px;
@@ -32,7 +32,7 @@ const Div = styled.div`
 `;
 
 const Ul = styled.ul`
-  width: 125px;
+  width: 150px;
   list-style: none;
   display: flex;
   flex-flow: column nowrap;

@@ -7,7 +7,7 @@ import DrinkCard from './DrinkDetails/DrinkCard';
 const Random = () => {
   const [drink, setDrink] = useState({});
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
-  console.log('user', user);
+  const [display, setDisplay] = useState(false);
 
   const {
     likedDrink,
@@ -29,6 +29,7 @@ const Random = () => {
         if (data.status === 200) {
           setDrink(data.data);
           setLoading(true);
+          setDisplay(true);
           console.log(data.data);
         } else {
           console.log(data.message);
@@ -57,10 +58,6 @@ const Random = () => {
           console.log('errordrinks');
         } else if (data.status === 200) {
           console.log('saved drink', data);
-          // setStatus(data.status);
-          // localStorage.setItem('id', JSON.stringify(data.message.id));
-          // // localStorage.setItem("id", JSON.stringify(clientId));
-          // history.push('/confirmed');
         }
       })
       .catch((error) => {
@@ -72,43 +69,9 @@ const Random = () => {
     <>
       <BigDiv>
         <Wrapper>
-          <Button onClick={handleRandomDrink}>random drink</Button>
-          <DrinkCard drink={drink} />
-          {/*<DrinkName>{loading && randomDrink.strDrink}</DrinkName>
-          <Img src={randomDrink.strDrinkThumb} alt='image of drink' />
-          <div>Ingredients</div>
-          <ul>
-            <li>
-              {randomDrink.strIngredient1} ⚪ ⚫ ‣ ➡ {randomDrink.strMeasure1}
-            </li>
-            <li>
-              {randomDrink.strIngredient2} {randomDrink.strMeasure2}
-            </li>
-            <li>
-              {randomDrink.strIngredient3} {randomDrink.strMeasure3}
-            </li>
-            <li>
-              {randomDrink.strIngredient4} {randomDrink.strMeasure4}
-            </li>
-            <li>
-              {randomDrink.strIngredient5} {randomDrink.strMeasure5}
-            </li>
-            <li>
-              {randomDrink.strIngredient6} {randomDrink.strMeasure6}
-            </li>
-            <li>
-              {randomDrink.strIngredient7} {randomDrink.strMeasure7}
-            </li>
-          </ul>
-          <div>{randomDrink.strGlass}</div>
-          <ul>
-            <li></li>
-          </ul>
-          <div>Recipe</div>
-          <div>{randomDrink.strInstructions}</div>
-          <button onClick={() => saveDrink(`${randomDrink.strDrink}`)}>
-            Save
-          </button>  */}
+          <Title>Push me to find your next drink!</Title>
+          <Button onClick={handleRandomDrink}>Surprise me!</Button>
+          {display && <DrinkCard drink={drink} />}
         </Wrapper>
       </BigDiv>
     </>
@@ -128,31 +91,23 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-// const Title = styled.div`
-//   /* font-family: 'Limelight', cursive;
+const Title = styled.div`
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
 
-//   font-family: 'Poiret One', cursive; */
-
-//   font-family: 'Voltaire', sans-serif;
-
-//   font-size: 50px;
-// `;
 const Button = styled.button`
   background-color: transparent;
-  border: none;
-  border-radius: 5px;
+  border: 1px solid black;
+  /* border-radius: 5px; */
   font-size: 16px;
   width: fit-content;
+  height: 30px;
 
   &:hover {
     transform: scale(1.3);
   }
 `;
-// const Img = styled.img`
-//   width: 20%;
-// `;
-// const DrinkName = styled.div`
-//   font-family: 'Poiret One', cursive;
-// `;
 
 export default Random;

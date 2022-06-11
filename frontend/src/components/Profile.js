@@ -2,45 +2,76 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import Comments from './Comments';
+import DrinkCard from './DrinkDetails/DrinkCard';
+import ErrorMessage from '../ErrorMessage';
 ///add saved drinks options
 //get filtered drinks
 //
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   const [favourites, setFavourites] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
+      setLoading(true);
       fetch(`/api/get-user/${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.status === 200) {
-            setFavourites(data.data);
-            setLoading(true);
-            console.log('favesdata', data.data);
+            setFavourites(data.data.favourites);
+            setLoading(false);
+
+            console.log('favesdata', data.data.favourites);
           } else {
             console.log('data.message');
           }
         });
     }
-  }, [user]);
+  }, [isAuthenticated]);
+  if (hasError) {
+    return <ErrorMessage />;
+  }
 
   return (
-    isAuthenticated && (
-      <div>
+    isAuthenticated &&
+    !loading && (
+      <Center>
         {/* <NavLink to='/profile'>
           <ProfilePin>Profile</ProfilePin>
         </NavLink> */}
-        <Hello data={user}>Welcome {user.name}</Hello>
-        <div></div>
-      </div>
+        <Hello>Welcome {user.nickname}</Hello>
+        <div>
+          {favourites?.map((drink) => {
+            // console.log('whyyyy', drink);
+            return (
+              <BigDiv key={drink.idDrink}>
+                <div>
+                  <DrinkCard drink={drink} />
+                </div>
+                <Comments drink={drink} />
+                <div>{drink.comment}</div>
+              </BigDiv>
+            );
+          })}
+        </div>
+      </Center>
     )
   );
 };
-const ProfilePin = styled.button`
-  color: white;
+const Center = styled.div`
+  margin: auto;
 `;
+const BigDiv = styled.div`
+  margin-bottom: 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 const Hello = styled.div`
   margin-top: 100px;
 `;

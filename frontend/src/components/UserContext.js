@@ -10,14 +10,14 @@ const UserProvider = ({ children }) => {
   const [comment, setComment] = useState();
   const [loading, setLoading] = useState();
 
-  useEffect(() => {
-    fetch(`/api/update-favourites/${drinkId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setLikedDrink(data);
-        console.log('likeddrink', data);
-      });
-  }, [drinkId]);
+  // useEffect(() => {
+  //   fetch(`/api/update-favourites/${drinkId}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setLikedDrink(data);
+  //       console.log('likeddrink', data);
+  //     });
+  // }, [drinkId]);
 
   return (
     <UserContext.Provider

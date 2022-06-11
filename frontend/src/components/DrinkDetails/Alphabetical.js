@@ -56,18 +56,17 @@ const Alphabetical = () => {
 
   return (
     <BigDiv>
-      <div>Alphabetical</div>
       <div>
         {letters.map((letter) => {
           return (
             <>
-              <button
+              <Letter
                 onClick={() => {
                   handleAlphabetical(letter);
                 }}
               >
                 {letter}
-              </button>
+              </Letter>
             </>
           );
         })}
@@ -86,25 +85,30 @@ const Alphabetical = () => {
           );
         })}
       </div>
-      {/* letter.filter((item) => {
-      return letter=== item.indexOf <Li>{item.drink.strDrink}</Li>
-      
-      }) */}
     </BigDiv>
   );
 };
 const BigDiv = styled.div`
-  margin-top: 100px;
+  margin-top: 120px;
   margin-left: auto;
   margin-right: auto;
 `;
+const Letter = styled.button`
+  background-color: black;
+  color: white;
+
+  /* background-color: #eeeae6;
+  color: black; */
+
+  margin: 3px;
+  padding: 5px 10px;
+  border-radius: 50%;
+`;
 
 const Grid = styled.div`
-  /* grid: 3; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 `;
-// const Li = styled.li`
-//   position: sticky;
-//   top: 0;
-// `;
 
 export default Alphabetical;

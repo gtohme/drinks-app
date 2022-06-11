@@ -96,11 +96,13 @@ const updatingFavourites = async (req, res) => {
     .findOne({ email: req.query.email });
   console.log(result);
   if (!result.favourites || result.favourites.length === 0) {
-    favArray = [{ id: req.query.id, comment: '' }];
-  } else if (result.favourites.some((el) => el.id === req.query.id)) {
-    favArray = result.favourites.filter((el) => el.id !== req.query.id);
+    favArray = [{ ...req.body, comment: '' }];
+  } else if (result.favourites.some((el) => el.idDrink === req.body.idDrink)) {
+    favArray = result.favourites.filter(
+      (el) => el.idDrink !== req.body.idDrink
+    );
   } else {
-    favArray = [...result.favourites, { id: req.query.id, comment: '' }];
+    favArray = [...result.favourites, { ...req.body, comment: '' }];
   }
   const updatedResult = await db
     .collection('users')
@@ -108,7 +110,6 @@ const updatingFavourites = async (req, res) => {
 
   client.close();
 
-  // console.log('whats going on', updatedResult);
   updatedResult.modifiedCount === 1
     ? res
         .status(200)
@@ -121,18 +122,14 @@ const updatingComments = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
 
+  console.log('comment');
   const db = client.db('drinks');
 
   const result = await db
     .collection('users')
-    // .updateOne({ email: email }, { $set: { id: id, comment: comment } });
-    // .updateOne(
-    //   { email: email },
-    //   { $set: favArray[{ id: id, comment: comment }] }
-    // );
     .updateOne(
-      { email: email },
-      { $push: { favourites: { id: id, comment: comment } } }
+      { email: email, 'favourites.idDrink': id },
+      { $set: { 'favourites.$.comment': comment } }
     );
 
   result.modifiedCount === 1
@@ -144,6 +141,23 @@ const updatingComments = async (req, res) => {
   client.close();
 };
 
+const getComments = async (req, res) => {
+  try {
+    const client = new MongoClient(MONGO_URI, options);
+    await client.connect();
+
+    const db = client.db('drinks');
+    const result = await db
+      .collection('users')
+      .findOne({ email: req.params.email });
+
+    result
+      ? res.status(200).json({ status: 200, data: result })
+      : res.status(404).json({ status: 404, data: 'Not Found' });
+
+    client.close();
+  } catch (err) {}
+};
 // export handler function
 module.exports = {
   getUsers,
@@ -151,13 +165,5 @@ module.exports = {
   addUser,
   updatingFavourites,
   updatingComments,
+  getComments,
 };
-// await db
-//       .collection("users")
-//       .findOneAndUpdate({ email: email }, { $push: { orderId: newOrderId } });
-// await db
-//           .collection("items")
-//           .findOneAndUpdate(
-//             { _id: id },
-//             { $set: { numInStock: newInventory } }
-//           );

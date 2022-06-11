@@ -2,21 +2,27 @@ import styled from 'styled-components';
 import { BsInstagram } from 'react-icons/bs';
 import { FiTwitter } from 'react-icons/fi';
 import { RiFacebookCircleLine } from 'react-icons/ri';
+import LogoutButton from './LogoutButton';
 
 const Footer = () => {
   return (
-    <Wrapper>
-      <Div>
-        <BsInstagram />
-      </Div>
-      <Div>
-        <FiTwitter />
-      </Div>
-      <Div>
-        <RiFacebookCircleLine />
-      </Div>
-      <DivHashtag>#TreatYoSelf</DivHashtag>
-    </Wrapper>
+    <div>
+      <Wrapper>
+        <Div>
+          <BsInstagram />
+        </Div>
+        <Div>
+          <FiTwitter />
+        </Div>
+        <Div>
+          <RiFacebookCircleLine />
+        </Div>
+        <DivHashtag>#TreatYoSelf</DivHashtag>
+        <div>
+          <LogoutButton />
+        </div>
+      </Wrapper>
+    </div>
   );
 };
 const Wrapper = styled.div`
