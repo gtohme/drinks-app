@@ -52,7 +52,7 @@ const Profile = () => {
                   <DrinkCard drink={drink} />
                 </div>
                 <Comments drink={drink} />
-                <div>{drink.comment}</div>
+                <CommentReturn>{drink.comment}</CommentReturn>
               </BigDiv>
             );
           })}
@@ -75,5 +75,7 @@ const BigDiv = styled.div`
 const Hello = styled.div`
   margin-top: 100px;
 `;
-
+const CommentReturn = styled.div`
+  font-size: 20px;
+`;
 export default Profile;

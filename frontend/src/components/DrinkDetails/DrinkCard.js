@@ -1,15 +1,20 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UserContext } from '../UserContext';
 import styled from 'styled-components';
 import { FiHeart } from 'react-icons/fi';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { AiFillHeart } from 'react-icons/ai';
+import Ingredients from './Ingredients';
 const DrinkCard = ({ drink }) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  // TODO: user should return the favorites collection
   const { user } = useAuth0();
-  const [isLiked, setIsLiked] = useState(false);
+  const { isLiked, setIsLiked, loading, setLoading } = useContext(UserContext);
+  // const [isLiked, setIsLiked] = useState(false);
 
-  console.log(drink);
+  console.log('User', user);
 
   const handleLike = (e) => {
     // e.preventDefault();
@@ -41,7 +46,7 @@ const DrinkCard = ({ drink }) => {
     <>
       <BigDiv>
         <MoveHeart>
-          {isLiked ? (
+          {true ? ( //user.favorites.filter((favorite) => favorite.idDrink === drink.idDrink).length ? (
             <ButtonLike onClick={handleLike}>
               <AiFillHeart />
             </ButtonLike>
@@ -53,42 +58,52 @@ const DrinkCard = ({ drink }) => {
         </MoveHeart>
         <Wrapper>
           <Title>{drink.strDrink}</Title>
+          <Top>
+            <Lefts>
+              <Img src={drink.strDrinkThumb} alt='image of drink' />
+            </Lefts>
+            <Rights>
+              <GlassSubtitle>Glass</GlassSubtitle>
+              <div>{drink.strGlass}</div>
+              <IngredientsSubtitle>Ingredients</IngredientsSubtitle>
+              <ul>
+                <li>
+                  •{drink.strIngredient1} {drink.strMeasure1}
+                </li>
+                <li>
+                  • {drink.strIngredient2} {drink.strMeasure2}
+                </li>
+              </ul>
+            </Rights>
+          </Top>
 
-          <Img src={drink.strDrinkThumb} alt='image of drink' />
-          <div>Glass</div>
-          <div>{drink.strGlass}</div>
-
-          <div>Ingredients</div>
-          <ul>
-            <li>
-              •{drink.strIngredient1} {drink.strMeasure1}
-            </li>
-            <li>
-              • {drink.strIngredient2} {drink.strMeasure2}
-            </li>
-          </ul>
-          <div>Instructions</div>
-          <Instructions>{drink.strInstructions}</Instructions>
+          {/*
+          <Scrollbars style={{ width: '100%', height: '100%' }}>
+            <InstructionsSubtitle>Instructions</InstructionsSubtitle>
+            <Instructions>{drink.strInstructions}</Instructions>
+          </Scrollbars>
+          */}
+          <InstructionsSubtitle>Instructions</InstructionsSubtitle>
+          <InstructionsWrapper>
+            <Instructions>{drink.strInstructions}</Instructions>
+          </InstructionsWrapper>
         </Wrapper>
       </BigDiv>
     </>
   );
 };
 const Wrapper = styled.div`
-  /* background-color: black; */
-
   background-color: #f3eff0;
-
   color: black;
   width: 400px;
   height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
   padding: 15px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
 `;
+
 const BigDiv = styled.div`
   width: fit-content;
   margin-left: auto;
@@ -97,16 +112,39 @@ const BigDiv = styled.div`
   font-family: 'Lato', sans-serif;
   font-size: 20px;
   border: 5px solid black;
-  /* margin-bottom: 100px; */
   box-shadow: 0px 5px 16px -5px rgba(0, 0, 0, 0.5);
 `;
-const Title = styled.div`
+const Title = styled.h3`
   font-family: 'Limelight', cursive;
-  font-size: 40px;
+  font-size: 36px;
+  text-align: center;
+  margin: 0 0 20px;
+`;
+const GlassSubtitle = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 5px;
+`;
+const IngredientsSubtitle = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
 `;
 
 const Img = styled.img`
-  width: 80px;
+  width: 120px;
+`;
+const Top = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 10px;
+`;
+const Lefts = styled.div`
+  flex: 0 0 auto;
+  margin: 0 20px 0 0;
+`;
+const Rights = styled.div`
+  flex: 0 0 auto;
 `;
 const MoveHeart = styled.div`
   background-color: black;
@@ -119,7 +157,21 @@ const ButtonLike = styled.button`
   margin-left: 380px;
 `;
 const Instructions = styled.div`
-  font-size: 14px;
+  margin-top: 5px;
+  font-size: 16px;
+  padding: 5px 5px 50px;
+`;
+
+const InstructionsSubtitle = styled.div`
+  padding: 0 0 10px;
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+const InstructionsWrapper = styled.div`
+  overflow-y: auto;
+  height: 200px;
+  margin-right: -15px;
 `;
 
 export default DrinkCard;

@@ -32,6 +32,7 @@ const Div = styled.div`
 `;
 
 const Ul = styled.ul`
+  background-color: #fff;
   width: 150px;
   list-style: none;
   display: flex;

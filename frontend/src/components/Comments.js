@@ -68,6 +68,11 @@ const Input = styled.input`
   font-size: 12px;
   font-family: 'Lato', sans-serif;
   border: none;
+  /* background-color: transparent;
+  border: 0px solid; */
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Button = styled.button`
@@ -75,6 +80,7 @@ const Button = styled.button`
   border: none;
   padding: 7px;
   font-size: 25px;
+
   &:hover {
     /* background-color: #f7f5f0; */
     /* border: 2px solid black; */

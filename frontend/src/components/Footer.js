@@ -6,7 +6,7 @@ import LogoutButton from './LogoutButton';
 
 const Footer = () => {
   return (
-    <div>
+    <FooterDiv>
       <Wrapper>
         <Div>
           <BsInstagram />
@@ -22,9 +22,13 @@ const Footer = () => {
           <LogoutButton />
         </div>
       </Wrapper>
-    </div>
+    </FooterDiv>
   );
 };
+const FooterDiv = styled.div`
+  margin-top: 120px;
+`;
+
 const Wrapper = styled.div`
   position: fixed;
   bottom: 0;
@@ -36,6 +40,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100px;
   background-color: black;
+  margin-top: 100px;
 `;
 const Div = styled.div`
   font-size: 30px;

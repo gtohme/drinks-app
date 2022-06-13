@@ -11,6 +11,8 @@ import Ingredients from './components/DrinkDetails/Ingredients';
 import Glasses from './components/DrinkDetails/Glasses';
 import NameOfDrinks from './components/DrinkDetails/NamesOfDrinks';
 import Profile from './components/Profile';
+import ListOfDrinks from './components/ListOfDrinks';
+import DrinkCard from './components/DrinkDetails/DrinkCard';
 
 function App() {
   return (
@@ -25,8 +27,10 @@ function App() {
             <Route path='/alphabetical' element={<Alphabetical />} />
             <Route path='/ingredients' element={<Ingredients />} />
             <Route path='/glasses' element={<Glasses />} />
-            <Route path='/name' element={<NameOfDrinks />} />
+            <Route path='/name/:value' element={<NameOfDrinks />} />
+            <Route path='/result/:drink' element={<ListOfDrinks />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/drink/:idDrink' element={<DrinkCard />} />
           </Routes>
         </RoutesWrapper>
         <Footer />
@@ -43,10 +47,7 @@ const Wrapper = styled.div`
 `;
 
 const RoutesWrapper = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-  width: 100%;
-  /* height: 100vh; */
+  margin: 120px 0 0;
 `;
 
 // {/* <Route path="about" element={<About />} /> */}
