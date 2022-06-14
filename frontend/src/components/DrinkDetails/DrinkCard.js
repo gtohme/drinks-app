@@ -11,7 +11,7 @@ const DrinkCard = ({ drink }) => {
   const [loading, setLoading] = useState(true);
   // const [isLiked, setIsLiked] = useState(false);
 
-  // console.log('User', user);
+  console.log('User', user);
 
   const handleLike = (e) => {
     // e.preventDefault();

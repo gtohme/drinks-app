@@ -9,23 +9,23 @@ const LoginButton = () => {
   const [currentUser, setCurrentUser] = useState();
   const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetch('/api/add-user', {
-        method: 'POST',
-        body: JSON.stringify({
-          user: user,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('datamessage', data.message);
-        });
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     fetch('/api/add-user', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         user: user,
+  //       }),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log('datamessage', data.message);
+  //       });
+  //   }
+  // }, [user]);
 
   return (
     !isAuthenticated && (

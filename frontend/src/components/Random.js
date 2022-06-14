@@ -53,6 +53,7 @@ const BigDiv = styled.div`
   justify-content: center;
   flex-direction: column;
   font-family: 'Lato', sans-serif;
+  width: 600px;
 `;
 
 const Wrapper = styled.div`

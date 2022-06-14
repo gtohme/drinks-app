@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-
+import { useAuth0 } from '@auth0/auth0-react';
 export const UserContext = createContext(null);
 
 const UserProvider = ({ children }) => {
@@ -16,6 +16,7 @@ const UserProvider = ({ children }) => {
   const [favourites, setFavourites] = useState();
 
   const [loading, setLoading] = useState(false);
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     setLoading(false);
@@ -33,6 +34,23 @@ const UserProvider = ({ children }) => {
         }
       });
   }, []);
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetch('/api/add-user', {
+        method: 'POST',
+        body: JSON.stringify({
+          user: user,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('datamessage', data.message);
+        });
+    }
+  }, [user]);
 
   return (
     <UserContext.Provider

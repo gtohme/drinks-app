@@ -95,7 +95,7 @@ const updatingFavourites = async (req, res) => {
     .collection('users')
     .findOne({ email: req.query.email });
   console.log(result);
-  if (!result.favourites || result.favourites.length === 0) {
+  if (!result?.favourites || result?.favourites.length === 0) {
     favArray = [{ ...req.body, comment: '' }];
   } else if (result.favourites.some((el) => el.idDrink === req.body.idDrink)) {
     favArray = result.favourites.filter(
