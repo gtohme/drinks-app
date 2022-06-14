@@ -63,7 +63,7 @@ const Wrapper = styled.div`
 `;
 const Title = styled.div`
   font-family: 'Lato', sans-serif;
-  font-size: 20px;
+  font-size: 30px;
   margin-bottom: 30px;
 `;
 

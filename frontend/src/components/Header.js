@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import Burger from './Burger';
 import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
-import Profile from './Profile';
 
 const Header = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -15,7 +13,6 @@ const Header = () => {
           <Logolink to='/'>
             <Logo>MIXOLOGY</Logo>
           </Logolink>
-          {/* <LogoutButton /> */}
         </LogoLogin>
         {isAuthenticated ? (
           <NavLink to='/profile'>
@@ -55,8 +52,6 @@ const Logo = styled.div`
   top: 10px;
   font-family: 'Zen Loop', cursive;
   font-size: 80px;
-
-  /* color: #fca311; */
   color: white;
   &:hover {
     transform: scale(1.03);
@@ -73,10 +68,13 @@ const ProfileButton = styled.button`
   font-family: 'Zen Loop', cursive;
   font-size: 30px;
   margin-right: 40px;
+  &:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+  }
 `;
 const Move = styled.div`
   margin-right: -70px;
 `;
-//object-fit: cover
 
 export default Header;

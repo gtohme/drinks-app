@@ -10,18 +10,18 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const [wordEntered, setWordEntered] = useState(['']);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [items, setItems] = useState();
 
-  const {
-    drinkId,
-    setDrinkId,
+  // const {
+  //   drinkId,
+  //   setDrinkId,
 
-    hasError,
-    setHasError,
-    drink,
-    setDrink,
-  } = useContext(UserContext);
+  //   hasError,
+  //   setHasError,
+  //   drink,
+  //   setDrink,
+  // } = useContext(UserContext);
 
   const handleKeyUp = (e) => {
     fetch(`/api/searchDrinks/${e.target.value}`)
@@ -131,16 +131,6 @@ const Input = styled.input`
   }
 `;
 
-// const ButtonDelete = styled.button`
-//   background-color: transparent;
-//   border: none;
-//   font-size: 16px;
-//   width: fit-content;
-//   &:hover {
-//     transform: scale(1.3);
-//   }
-// `;
-
 const ButtonSearch = styled.button`
   background-color: transparent;
   border: none;
@@ -161,7 +151,6 @@ const ListedItems = styled.ul`
   border-radius: 5px;
   position: absolute;
   height: 300px;
-  /* background: white; */
   color: #707072;
   overflow-y: auto;
 `;
@@ -174,10 +163,6 @@ const ItemsDropdown = styled.li`
   :hover {
     cursor: pointer;
     background-color: #f7f5f0;
-    /* background-color: #fcb97d;
-    background-color: #f97d10;
-    background-color: #faa701;
-    background-color: #f75c1a; */
     color: black;
   }
 `;

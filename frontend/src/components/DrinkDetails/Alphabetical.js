@@ -41,11 +41,10 @@ const Alphabetical = () => {
     fetch(`/api/get-drinks-letter/${letter}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.status === 200) {
           setDrinks(data.data.drinks);
           setLoading(true);
-          console.log(data.data.drinks);
+          // console.log(data.data.drinks);
         } else {
           console.log(data.message);
         }
@@ -58,7 +57,7 @@ const Alphabetical = () => {
         <CircularProgressbar />
       ) : (
         <>
-          <Why>
+          <AtoZ>
             {letters?.map((letter) => {
               return (
                 <>
@@ -72,17 +71,15 @@ const Alphabetical = () => {
                 </>
               );
             })}
-          </Why>
+          </AtoZ>
 
           <Div>
             {drinks?.map((drink) => {
               return (
                 <>
-                  <Grid>
-                    <div>
-                      <DrinkCard drink={drink} />
-                    </div>
-                  </Grid>
+                  <div>
+                    <DrinkCard drink={drink} />
+                  </div>
                 </>
               );
             })}
@@ -93,19 +90,23 @@ const Alphabetical = () => {
   );
 };
 const BigDiv = styled.div`
-  margin-top: 120px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 80px;
 `;
 const Letter = styled.button`
   background-color: black;
   color: white;
-  /* margin: auto; */
-  padding: 5px 10px;
+  padding: 15px 20px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 4px;
+  font-size: 15px;
+  font-weight: bold;
+  &:hover {
+    transform: scale(1.04);
+    /* color: #f35b04; */
+    cursor: pointer;
+  }
 `;
 const Div = styled.div`
   display: grid;
@@ -114,20 +115,12 @@ const Div = styled.div`
   margin: 4%;
   margin-bottom: 400px;
 `;
-const Grid = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap; */
-  /* display: grid;
-  grid-template-columns: 3fr 3fr 3fr;
-  gap: 5%;
-  margin: 4%; */
-`;
-const Why = styled.div`
+
+const AtoZ = styled.div`
   display: flex;
   flex-direction: row;
   width: 1200px;
-  margin: auto;
+  margin-left: 200px;
 `;
 
 export default Alphabetical;

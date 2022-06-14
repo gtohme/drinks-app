@@ -9,9 +9,6 @@ const DrinkCard = ({ drink }) => {
   const { user } = useAuth0();
   const { isLiked, setIsLiked, favourites } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  // const [isLiked, setIsLiked] = useState(false);
-
-  console.log('User', user);
 
   const handleLike = (e) => {
     // e.preventDefault();
@@ -62,7 +59,7 @@ const DrinkCard = ({ drink }) => {
               </Lefts>
               <Rights>
                 <GlassSubtitle>Glass</GlassSubtitle>
-                <div>{drink.strGlass}</div>
+                <GlassName>{drink.strGlass}</GlassName>
                 <IngredientsSubtitle>Ingredients</IngredientsSubtitle>
                 <ul>
                   <Li>
@@ -133,7 +130,10 @@ const IngredientsSubtitle = styled.div`
   font-weight: bold;
   margin: 8px 0;
 `;
-
+const GlassName = styled.div`
+  font-size: 16px;
+  padding-left: 5px;
+`;
 const Img = styled.img`
   width: 150px;
 `;
@@ -160,10 +160,14 @@ const ButtonLike = styled.button`
   color: red;
   border: none;
   font-size: 30px;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+  }
 `;
 const Instructions = styled.div`
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 17px;
   padding: 5px 5px 40px;
 `;
 
@@ -179,6 +183,6 @@ const InstructionsWrapper = styled.div`
   margin-right: -15px;
 `;
 const Li = styled.div`
-  font-size: 15px;
+  font-size: 16px;
 `;
 export default DrinkCard;
