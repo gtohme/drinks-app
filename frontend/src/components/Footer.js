@@ -8,25 +8,28 @@ const Footer = () => {
   return (
     <FooterDiv>
       <Wrapper>
-        <Div>
-          <BsInstagram />
-        </Div>
-        <Div>
-          <FiTwitter />
-        </Div>
-        <Div>
-          <RiFacebookCircleLine />
-        </Div>
-        <DivHashtag>#TreatYoSelf</DivHashtag>
-        <div>
+        <Second>
+          <Div>
+            <BsInstagram />
+          </Div>
+          <Div>
+            <FiTwitter />
+          </Div>
+          <Div>
+            <RiFacebookCircleLine />
+          </Div>
+          <DivHashtag>#TreatYoSelf</DivHashtag>
+        </Second>
+        <LogOutDiv>
           <LogoutButton />
-        </div>
+        </LogOutDiv>
       </Wrapper>
     </FooterDiv>
   );
 };
 const FooterDiv = styled.div`
   margin-top: 120px;
+  position: relative;
 `;
 
 const Wrapper = styled.div`
@@ -34,9 +37,6 @@ const Wrapper = styled.div`
   bottom: 0;
   display: flex;
   justify-content: center;
-  flex: 1; ///not sure....
-  gap: 30px;
-
   width: 100%;
   height: 100px;
   background-color: black;
@@ -53,4 +53,15 @@ const DivHashtag = styled.div`
   color: white;
   margin-top: 25px;
 `;
+const Second = styled.div`
+  display: flex;
+  gap: 30px;
+`;
+const LogOutDiv = styled.div`
+  margin-top: 20px;
+  position: absolute;
+  right: 10px;
+  bottom: 3 0px;
+`;
+
 export default Footer;

@@ -14,12 +14,12 @@ const Header = () => {
           <Logolink to='/'>
             <Logo>MIXOLOGY</Logo>
           </Logolink>
-          <LoginButton />
           {/* <LogoutButton /> */}
         </LogoLogin>
         <NavLink to='/profile'>
           <ProfileButton>My Profile</ProfileButton>
         </NavLink>
+        <LoginButton />
 
         <Burger />
       </Wrapper>

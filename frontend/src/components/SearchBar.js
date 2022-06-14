@@ -44,7 +44,7 @@ const SearchBar = () => {
   };
 
   const handleKeyEnter = () => {
-    // setItems('');
+    setItems('');
     navigate(`/name/${items}`);
   };
 

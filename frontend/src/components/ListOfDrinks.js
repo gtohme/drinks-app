@@ -43,7 +43,7 @@ const ListOfDrinks = () => {
           <Wrapper>
             {drinks?.map((drink) => {
               return (
-                <DivCard>
+                <DivCard key={drink.idDrink}>
                   <Div>
                     <DrinkCard drink={drink} />
                   </Div>

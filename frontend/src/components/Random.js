@@ -6,7 +6,7 @@ import DrinkCard from './DrinkDetails/DrinkCard';
 
 const Random = () => {
   const [drink, setDrink] = useState({});
-  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const [display, setDisplay] = useState(false);
 
   const {
@@ -37,35 +37,34 @@ const Random = () => {
       });
   };
 
-  const saveDrink = (e) => {
-    // e.preventDefault();
-    fetch(`/api/update-comments`, {
-      body: JSON.stringify({
-        user: user,
-        drinkId: drink.idDrink,
-        comment: '',
-      }),
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data, "second data");
-        if (data.status === 400) {
-          // setErrorMessage(data.message);
-          console.log('errordrinks');
-        } else if (data.status === 200) {
-          console.log('saved drink', data);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const saveDrink = (e) => {
+  //   fetch(`/api/update-comments`, {
+  //     body: JSON.stringify({
+  //       user: user,
+  //       drinkId: drink.idDrink,
+  //       comment: '',
+  //     }),
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log(data, "second data");
+  //       if (data.status === 400) {
+  //         // setErrorMessage(data.message);
+  //         console.log('errordrinks');
+  //       } else if (data.status === 200) {
+  //         console.log('saved drink', data);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
-  return (
+  return loading ? (
     <>
       <BigDiv>
         <Wrapper>
@@ -75,6 +74,8 @@ const Random = () => {
         </Wrapper>
       </BigDiv>
     </>
+  ) : (
+    'loading'
   );
 };
 const BigDiv = styled.div`
@@ -99,14 +100,17 @@ const Title = styled.div`
 
 const Button = styled.button`
   background-color: transparent;
-  border: 1px solid black;
+  border: 3px solid black;
   /* border-radius: 5px; */
   font-size: 16px;
   width: fit-content;
   height: 30px;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.6);
+    background-color: #f35b04;
+    color: white;
+    border: none;
   }
 `;
 

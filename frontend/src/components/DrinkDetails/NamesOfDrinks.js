@@ -7,9 +7,9 @@ import { UserContext } from '../UserContext';
 const NamesOfDrinks = () => {
   const { value } = useParams();
   const [drinks, setDrinks] = useState();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   console.log('bahabhabaha', value);
-  const { items } = useContext(UserContext);
+  const { items, loading, setLoading } = useContext(UserContext);
   console.log('iteammsssss', items);
 
   useEffect(() => {
@@ -29,19 +29,21 @@ const NamesOfDrinks = () => {
   }, []);
   console.log('items', drinks);
   return (
-    <>
-      <Title>AllDrinks</Title>
+    loading && (
+      <>
+        <Title>AllDrinks</Title>
 
-      <div>
-        {drinks.map((drink) => {
-          return (
-            <DivCard>
-              <DrinkCard drink={drink} />
-            </DivCard>
-          );
-        })}
-      </div>
-    </>
+        <div>
+          {drinks.map((drink) => {
+            return (
+              <DivCard>
+                <DrinkCard drink={drink} />
+              </DivCard>
+            );
+          })}
+        </div>
+      </>
+    )
   );
 };
 const Title = styled.div`

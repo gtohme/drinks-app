@@ -3,11 +3,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 import styled from 'styled-components';
 import { MdSaveAlt } from 'react-icons/md';
 const Comments = ({ drink }) => {
-  const [newComment, setNewComment] = useState('');
+  // const [newComment, setNewComment] = useState('');
   const [commentInput, setCommentInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
-  // const [posted, setPosted] = useState(false);
+  const { user } = useAuth0();
 
   const handleNewComment = (e) => {
     e.preventDefault();
@@ -26,8 +25,6 @@ const Comments = ({ drink }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
-          // setPosted((prev) => !prev);
-          console.log('comment', data.data);
           setLoading(true);
         }
       })
@@ -35,11 +32,7 @@ const Comments = ({ drink }) => {
         console.log('error');
       });
   };
-  // useEffect =
-  //   (() => {
-  //     setLoading(true);
-  //   },
-  //   [posted]);
+
   return (
     <BigDiv>
       <form
@@ -65,11 +58,10 @@ const Comments = ({ drink }) => {
 const Input = styled.input`
   width: 395px;
   height: 30px;
-  font-size: 12px;
+  font-size: 15px;
   font-family: 'Lato', sans-serif;
   border: none;
-  /* background-color: transparent;
-  border: 0px solid; */
+
   &:focus {
     outline: none;
   }
@@ -90,6 +82,8 @@ const Button = styled.button`
 const BigDiv = styled.div`
   background-color: white;
   border: 1px solid black;
+  width: 438px;
+  margin: auto;
 `;
 
 export default Comments;

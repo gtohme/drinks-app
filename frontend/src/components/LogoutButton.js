@@ -18,8 +18,8 @@ const LogoutButton = () => {
 };
 
 const Button = styled.button`
-  margin-right: 60px;
-  background-color: orange;
+  /* margin-right: 60px; */
+  background-color: #f35b04;
   border-radius: 50%;
   padding: 5px 8px;
   border: none;

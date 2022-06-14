@@ -14,6 +14,7 @@ const UserProvider = ({ children }) => {
   const [drink, setDrink] = useState({});
   const [display, setDisplay] = useState(false);
   const [items, setItems] = useState();
+  const [favourites, setFavourites] = useState();
 
   // useEffect(() => {
   //   fetch(`/api/update-favourites/${drinkId}`)
@@ -62,6 +63,8 @@ const UserProvider = ({ children }) => {
         setDisplay,
         items,
         setItems,
+        favourites,
+        setFavourites,
       }}
     >
       {children}

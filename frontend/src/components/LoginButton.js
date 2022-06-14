@@ -44,7 +44,7 @@ const Button = styled.button`
   font-size: 20px;
   cursor: pointer;
   &:hover {
-    background-color: orange;
+    background-color: #f35b04;
   }
 `;
 export default LoginButton;

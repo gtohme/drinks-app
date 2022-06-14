@@ -3,21 +3,19 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../UserContext';
 import styled from 'styled-components';
 import { FiHeart } from 'react-icons/fi';
-import { Scrollbars } from 'react-custom-scrollbars';
-
 import { AiFillHeart } from 'react-icons/ai';
-import Ingredients from './Ingredients';
+
 const DrinkCard = ({ drink }) => {
-  // const [loading, setLoading] = useState(false);
-  // TODO: user should return the favorites collection
   const { user } = useAuth0();
-  const { isLiked, setIsLiked, loading, setLoading } = useContext(UserContext);
+  const { isLiked, setIsLiked, favourites } = useContext(UserContext);
+  const [loading, setLoading] = useState(true);
   // const [isLiked, setIsLiked] = useState(false);
 
-  console.log('User', user);
+  // console.log('User', user);
 
   const handleLike = (e) => {
     // e.preventDefault();
+    setLoading(true);
     fetch(`/api/update-favourites/?email=${user.email}`, {
       method: 'POST',
       headers: {
@@ -33,63 +31,75 @@ const DrinkCard = ({ drink }) => {
           console.log('errordrinks');
         } else if (data.status === 200) {
           console.log('saved drink', data);
-          setIsLiked(!isLiked);
+          setLoading(false);
+          // setIsLiked(!isLiked);
         }
       })
       .catch((error) => {
         console.error(error);
       });
   };
-  // color={isLiked ? 'rgb(224, 36, 94)' : 'black'}
-  // fill={isLiked ? 'rgb(224, 36, 94)' : 'transparent'}
-  return (
-    <>
-      <BigDiv>
-        <MoveHeart>
-          {true ? ( //user.favorites.filter((favorite) => favorite.idDrink === drink.idDrink).length ? (
-            <ButtonLike onClick={handleLike}>
-              <AiFillHeart />
-            </ButtonLike>
-          ) : (
-            <ButtonLike onClick={handleLike}>
-              <FiHeart />
-            </ButtonLike>
-          )}
-        </MoveHeart>
-        <Wrapper>
-          <Title>{drink.strDrink}</Title>
-          <Top>
-            <Lefts>
-              <Img src={drink.strDrinkThumb} alt='image of drink' />
-            </Lefts>
-            <Rights>
-              <GlassSubtitle>Glass</GlassSubtitle>
-              <div>{drink.strGlass}</div>
-              <IngredientsSubtitle>Ingredients</IngredientsSubtitle>
-              <ul>
-                <li>
-                  •{drink.strIngredient1} {drink.strMeasure1}
-                </li>
-                <li>
-                  • {drink.strIngredient2} {drink.strMeasure2}
-                </li>
-              </ul>
-            </Rights>
-          </Top>
 
-          {/*
-          <Scrollbars style={{ width: '100%', height: '100%' }}>
+  return (
+    loading && (
+      <>
+        <BigDiv>
+          <MoveHeart>
+            <ButtonLike onClick={handleLike}>
+              {favourites?.filter((el) => el.idDrink === drink.idDrink).length >
+              0 ? (
+                <AiFillHeart />
+              ) : (
+                <FiHeart />
+              )}
+            </ButtonLike>
+          </MoveHeart>
+          <Wrapper>
+            <Title>{drink.strDrink}</Title>
+            <Top>
+              <Lefts>
+                <Img src={drink.strDrinkThumb} alt='image of drink' />
+              </Lefts>
+              <Rights>
+                <GlassSubtitle>Glass</GlassSubtitle>
+                <div>{drink.strGlass}</div>
+                <IngredientsSubtitle>Ingredients</IngredientsSubtitle>
+                <ul>
+                  <Li>
+                    • {drink.strIngredient1} {drink.strMeasure1}
+                  </Li>
+                  <Li>
+                    • {drink.strIngredient2} {drink.strMeasure2}
+                  </Li>
+                  <Li>
+                    {drink.strIngredient3 ? (
+                      <div>
+                        • {drink.strIngredient3} {drink.strMeasure3}
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </Li>
+                  <Li>
+                    {drink.strIngredient4 ? (
+                      <div>
+                        • {drink.strIngredient4} {drink.strMeasure4}
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </Li>
+                </ul>
+              </Rights>
+            </Top>
             <InstructionsSubtitle>Instructions</InstructionsSubtitle>
-            <Instructions>{drink.strInstructions}</Instructions>
-          </Scrollbars>
-          */}
-          <InstructionsSubtitle>Instructions</InstructionsSubtitle>
-          <InstructionsWrapper>
-            <Instructions>{drink.strInstructions}</Instructions>
-          </InstructionsWrapper>
-        </Wrapper>
-      </BigDiv>
-    </>
+            <InstructionsWrapper>
+              <Instructions>{drink.strInstructions}</Instructions>
+            </InstructionsWrapper>
+          </Wrapper>
+        </BigDiv>
+      </>
+    )
   );
 };
 const Wrapper = styled.div`
@@ -121,14 +131,14 @@ const Title = styled.h3`
   margin: 0 0 20px;
 `;
 const GlassSubtitle = styled.div`
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
-  margin: 0 0 5px;
+  margin: 0 0 4px;
 `;
 const IngredientsSubtitle = styled.div`
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 8px 0;
 `;
 
 const Img = styled.img`
@@ -148,6 +158,7 @@ const Rights = styled.div`
 `;
 const MoveHeart = styled.div`
   background-color: black;
+  color: white;
 `;
 const ButtonLike = styled.button`
   background-color: transparent;
@@ -173,5 +184,7 @@ const InstructionsWrapper = styled.div`
   height: 200px;
   margin-right: -15px;
 `;
-
+const Li = styled.div`
+  font-size: 14px;
+`;
 export default DrinkCard;

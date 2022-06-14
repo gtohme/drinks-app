@@ -134,35 +134,8 @@ const getRandomDrink = async (req, res) => {
   }
 };
 
-/**
- * Cleans the data that comes back from the drinks API.
- *
- * @param {*} data
- * @returns
- */
-// const cleanDrinkData = function (data) {
-//   // TODO
-
-//   const newDrinksData = {};
-
-//   const ingredients = [];
-//   const measures = [];
-
-//   if (data.ingredients1) {
-//     ingredients.push(data.ingredients1);
-//   }
-
-//   newDrinksData.flavor = data.flavor;
-//   newDrinksData.color = data.color;
-//   newDrinksData.ingredients = ingredients;
-//   newDrinksData.measures = measures;
-
-//   return newDrinksData;
-// };
-
 const searchDrinkByNameOrIngredient = async (req, res) => {
   const { value } = req.params;
-  //ingredients have numbers 1-15
 
   const cocktailUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${value}`;
   const cocktailUrl2 = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${value}`;

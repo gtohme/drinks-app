@@ -1,22 +1,26 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Random from './Random';
 import SearchBar from './SearchBar';
 
 const Homepage = () => {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
-      <BigDiv>
-        <Div>
-          <Quote1>Help me help you</Quote1>
-          <Quote2>find your next drink</Quote2>
+      {loading ? (
+        <BigDiv>
+          <Div>
+            <Quote1>Help me help you</Quote1>
+            <Quote2>find your next drink</Quote2>
 
-          <SearchBar />
-          {/* <Body></Body> */}
-          {/* <Random /> */}
-        </Div>
-      </BigDiv>
-      {/* <Footer /> */}
+            <SearchBar />
+          </Div>
+        </BigDiv>
+      ) : (
+        'loading'
+      )}
     </>
   );
 };
