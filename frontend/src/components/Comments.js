@@ -26,6 +26,7 @@ const Comments = ({ drink }) => {
       .then((data) => {
         if (data.status === 200) {
           setLoading(true);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -35,7 +36,7 @@ const Comments = ({ drink }) => {
 
   return (
     <BigDiv>
-      <form
+      <Form
         onSubmit={(e) => {
           handleNewComment(e);
         }}
@@ -50,13 +51,16 @@ const Comments = ({ drink }) => {
         <Button type='submit'>
           <MdSaveAlt />
         </Button>
-      </form>
+      </Form>
     </BigDiv>
   );
 };
+const Form = styled.form`
+  display: flex;
+`;
 
 const Input = styled.input`
-  width: 395px;
+  width: 100%;
   height: 30px;
   font-size: 15px;
   font-family: 'Lato', sans-serif;
@@ -82,7 +86,7 @@ const Button = styled.button`
 const BigDiv = styled.div`
   background-color: white;
   border: 1px solid black;
-  width: 438px;
+  width: 100%;
   margin: auto;
 `;
 

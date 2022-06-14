@@ -37,38 +37,46 @@ const Profile = () => {
     !loading && (
       <Center>
         <Hello>Welcome @{user.nickname}</Hello>
-        <div>
+        <Wrapper>
           {favourites?.map((drink) => {
             return (
               <BigDiv key={drink.idDrink}>
                 <div>
                   <DrinkCard drink={drink} />
+                  <Comments drink={drink} />
+                  <CommentReturn>
+                    <Span>Next time: </Span>
+                    {drink.comment}
+                  </CommentReturn>
                 </div>
-                <Comments drink={drink} />
-                <CommentReturn>
-                  <Span>Next time: </Span>
-                  {drink.comment}
-                </CommentReturn>
               </BigDiv>
             );
           })}
-        </div>
+        </Wrapper>
       </Center>
     )
   );
 };
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  gap: 5%;
+  margin: 4%;
+  padding: 0 0 100px;
+`;
+
 const Center = styled.div`
-  margin: auto;
+  /* margin: auto; */
 `;
 const BigDiv = styled.div`
-  margin-bottom: 130px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
 const Hello = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 20px;
   font-family: 'Lato', sans-serif;
   font-size: 30px;

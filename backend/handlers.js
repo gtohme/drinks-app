@@ -58,9 +58,10 @@ const getDrinksByFirstLetter = async (req, res) => {
 
 const getIngredientByName = async (req, res) => {
   const { ingredient } = req.params;
-  //ingredients have numbers 1-15
 
   const cocktailUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${ingredient}`;
+
+  // const cocktailUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
 
   try {
     const apiData = {
@@ -170,6 +171,31 @@ const searchDrinkByNameOrIngredient = async (req, res) => {
     res.status(500).json({ status: 500, message: err.message });
   }
 };
+const getGlasses = async (req, res) => {
+  const { glasses } = req.params;
+
+  const cocktailUrl = `https://www.thecocktaildb.com/api/json/v1/1/list.php?g=${glasses}`;
+
+  try {
+    const apiData = {
+      headers: {
+        Authorization: `Bearer ${API_KEY_}`,
+        Origin: 'http://localhost:3000',
+        'Content-Type': 'application/json',
+        withCredentials: true,
+      },
+    };
+
+    const response = await fetch(cocktailUrl, apiData);
+    const data = await response.json();
+
+    console.log(data);
+
+    res.status(200).json({ status: 200, data });
+  } catch (err) {
+    res.status(500).json({ status: 500, message: err.message });
+  }
+};
 
 module.exports = {
   getDrinksByName,
@@ -178,6 +204,7 @@ module.exports = {
   getDrinksDetailsById,
   getRandomDrink,
   searchDrinkByNameOrIngredient,
+  getGlasses,
   // getFilterDrinkAlcoholOrNon,
   // getCategory,
 };

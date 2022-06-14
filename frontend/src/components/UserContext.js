@@ -8,7 +8,6 @@ const UserProvider = ({ children }) => {
   const [likedDrink, setLikedDrink] = useState();
   const [drinkId, setDrinkId] = useState();
   const [comment, setComment] = useState();
-  const [loading, setLoading] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [drink, setDrink] = useState({});
@@ -16,15 +15,8 @@ const UserProvider = ({ children }) => {
   const [items, setItems] = useState();
   const [favourites, setFavourites] = useState();
 
-  // useEffect(() => {
-  //   fetch(`/api/update-favourites/${drinkId}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setLikedDrink(data);
-  //       console.log('likeddrink', data);
-  //     });
-  // }, [drinkId]);
-  // const handleRandomDrink = () => {
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     setLoading(false);
     fetch('/api/get-random-drink')
@@ -51,8 +43,7 @@ const UserProvider = ({ children }) => {
         setDrinkId,
         comment,
         setComment,
-        loading,
-        setLoading,
+
         isLiked,
         setIsLiked,
         hasError,

@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 `;
 
 const RoutesWrapper = styled.div`
-  margin: 120px 0 0;
+  padding: 120px 0 150px;
 `;
 
 // {/* <Route path="about" element={<About />} /> */}

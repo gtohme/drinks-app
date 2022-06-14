@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import DrinkCard from './DrinkCard';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Alphabetical = () => {
   const [drinks, setDrinks] = useState([]);
@@ -33,10 +35,6 @@ const Alphabetical = () => {
     'Y',
     'Z',
   ];
-  // const letter = letters.map((letter) => {
-  //   console.log(letter);
-  //   return letter;
-  // });
 
   const handleAlphabetical = (letter) => {
     setLoading(false);
@@ -56,35 +54,41 @@ const Alphabetical = () => {
 
   return (
     <BigDiv>
-      <div>
-        {letters.map((letter) => {
-          return (
-            <>
-              <Letter
-                onClick={() => {
-                  handleAlphabetical(letter);
-                }}
-              >
-                {letter}
-              </Letter>
-            </>
-          );
-        })}
-      </div>
+      {!letters ? (
+        <CircularProgressbar />
+      ) : (
+        <>
+          <Why>
+            {letters?.map((letter) => {
+              return (
+                <>
+                  <Letter
+                    onClick={() => {
+                      handleAlphabetical(letter);
+                    }}
+                  >
+                    {letter}
+                  </Letter>
+                </>
+              );
+            })}
+          </Why>
 
-      <div>
-        {drinks?.map((drink) => {
-          return (
-            <>
-              <Grid>
-                <div>
-                  <DrinkCard drink={drink} />
-                </div>
-              </Grid>
-            </>
-          );
-        })}
-      </div>
+          <Div>
+            {drinks?.map((drink) => {
+              return (
+                <>
+                  <Grid>
+                    <div>
+                      <DrinkCard drink={drink} />
+                    </div>
+                  </Grid>
+                </>
+              );
+            })}
+          </Div>
+        </>
+      )}
     </BigDiv>
   );
 };
@@ -96,19 +100,34 @@ const BigDiv = styled.div`
 const Letter = styled.button`
   background-color: black;
   color: white;
-
-  /* background-color: #eeeae6;
-  color: black; */
-
-  margin: 3px;
+  /* margin: auto; */
   padding: 5px 10px;
   border-radius: 50%;
-`;
-
-const Grid = styled.div`
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  margin: 10px;
+`;
+const Div = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  gap: 5%;
+  margin: 4%;
+  margin-bottom: 400px;
+`;
+const Grid = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap; */
+  /* display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  gap: 5%;
+  margin: 4%; */
+`;
+const Why = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 1200px;
+  margin: auto;
 `;
 
 export default Alphabetical;

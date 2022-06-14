@@ -45,7 +45,13 @@ const Wrapper = styled.div`
 const Div = styled.div`
   font-size: 30px;
   color: white;
-  margin-top: 18px;
+  margin-top: 22px;
+  &:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    color: orange;
+  }
 `;
 const DivHashtag = styled.div`
   font-family: 'Lato', sans-serif;

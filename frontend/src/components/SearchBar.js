@@ -1,32 +1,26 @@
 import styled from 'styled-components';
 import { BsSearch } from 'react-icons/bs';
-import { TiDeleteOutline } from 'react-icons/ti';
+// import { TiDeleteOutline } from 'react-icons/ti';
 import { useState, useEffect, useContext } from 'react';
 import ErrorMessage from '../ErrorMessage';
 import { UserContext } from './UserContext';
 import { useNavigate } from 'react-router-dom';
-// import DrinkCard from './DrinkDetails/DrinkCard';
-// <DrinkCard drink={drink} />
 
 const SearchBar = () => {
   const navigate = useNavigate();
 
-  // const [allDrinks, setAllDrinks] = useState();
-  // const [filteredData, setFilteredData] = useState([]);
-  // const [searchItems, setSearchItems] = useState('');
   const [wordEntered, setWordEntered] = useState(['']);
+  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState();
 
   const {
     drinkId,
     setDrinkId,
-    loading,
-    setLoading,
+
     hasError,
     setHasError,
     drink,
     setDrink,
-    items,
-    setItems,
   } = useContext(UserContext);
 
   const handleKeyUp = (e) => {
@@ -53,61 +47,57 @@ const SearchBar = () => {
   };
   return (
     <>
-      {loading ? (
-        <Div>
-          <Wrapper>
-            <Input
-              type='text'
-              value={wordEntered}
-              placeholder='Search'
-              onChange={(e) => setWordEntered(e.target.value)}
-              onKeyUp={(e) => {
-                if (e.key === 'Enter') {
-                  handleKeyEnter(e.target.value);
-                }
-                handleKeyUp(e);
-              }}
-            />
+      <Div>
+        <Wrapper>
+          <Input
+            type='text'
+            value={wordEntered}
+            placeholder='Search'
+            onChange={(e) => setWordEntered(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === 'Enter') {
+                handleKeyEnter(e.target.value);
+              }
+              handleKeyUp(e);
+            }}
+          />
 
-            <ButtonSearch onClick={() => handleKeyEnter(wordEntered)}>
-              <BsSearch />
-            </ButtonSearch>
-            {items && (
-              <ListedItems>
-                {items?.map((drink) => {
-                  return (
-                    <ItemsDropdown
-                      key={drink._id}
-                      onClick={() => handleSuggestions(drink.strDrink)}
-                    >
-                      <span>
+          <ButtonSearch onClick={() => handleKeyEnter(wordEntered)}>
+            <BsSearch />
+          </ButtonSearch>
+          {items && (
+            <ListedItems>
+              {items?.map((drink) => {
+                return (
+                  <ItemsDropdown
+                    key={drink._id}
+                    onClick={() => handleSuggestions(drink.strDrink)}
+                  >
+                    <span>
+                      {drink.strDrink.slice(
+                        0,
+                        drink.strDrink
+                          .toLowerCase()
+                          .indexOf(wordEntered.toLowerCase()) +
+                          wordEntered.length
+                      )}
+
+                      <Suggestions>
                         {drink.strDrink.slice(
-                          0,
                           drink.strDrink
                             .toLowerCase()
                             .indexOf(wordEntered.toLowerCase()) +
                             wordEntered.length
                         )}
-
-                        <Suggestions>
-                          {drink.strDrink.slice(
-                            drink.strDrink
-                              .toLowerCase()
-                              .indexOf(wordEntered.toLowerCase()) +
-                              wordEntered.length
-                          )}
-                        </Suggestions>
-                      </span>
-                    </ItemsDropdown>
-                  );
-                })}
-              </ListedItems>
-            )}
-          </Wrapper>
-        </Div>
-      ) : (
-        'loading'
-      )}
+                      </Suggestions>
+                    </span>
+                  </ItemsDropdown>
+                );
+              })}
+            </ListedItems>
+          )}
+        </Wrapper>
+      </Div>
     </>
   );
 };
@@ -184,8 +174,10 @@ const ItemsDropdown = styled.li`
   :hover {
     cursor: pointer;
     background-color: #f7f5f0;
-    background-color: #fcb97d;
+    /* background-color: #fcb97d;
     background-color: #f97d10;
+    background-color: #faa701;
+    background-color: #f75c1a; */
     color: black;
   }
 `;

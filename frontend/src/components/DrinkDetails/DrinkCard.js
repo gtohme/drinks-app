@@ -105,20 +105,13 @@ const DrinkCard = ({ drink }) => {
 const Wrapper = styled.div`
   background-color: #f3eff0;
   color: black;
-  width: 400px;
   height: 400px;
   display: block;
   padding: 15px;
-  margin-left: auto;
-  margin-right: auto;
   overflow: hidden;
 `;
 
 const BigDiv = styled.div`
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 25px;
   font-family: 'Lato', sans-serif;
   font-size: 20px;
   border: 5px solid black;
@@ -142,7 +135,7 @@ const IngredientsSubtitle = styled.div`
 `;
 
 const Img = styled.img`
-  width: 120px;
+  width: 150px;
 `;
 const Top = styled.div`
   display: flex;
@@ -151,7 +144,7 @@ const Top = styled.div`
 `;
 const Lefts = styled.div`
   flex: 0 0 auto;
-  margin: 0 20px 0 0;
+  margin: 0 30px 0 0;
 `;
 const Rights = styled.div`
   flex: 0 0 auto;
@@ -159,22 +152,23 @@ const Rights = styled.div`
 const MoveHeart = styled.div`
   background-color: black;
   color: white;
+  display: flex;
+  justify-content: flex-end;
 `;
 const ButtonLike = styled.button`
   background-color: transparent;
   color: red;
   border: none;
   font-size: 30px;
-  margin-left: 380px;
 `;
 const Instructions = styled.div`
   margin-top: 5px;
   font-size: 16px;
-  padding: 5px 5px 50px;
+  padding: 5px 5px 40px;
 `;
 
 const InstructionsSubtitle = styled.div`
-  padding: 0 0 10px;
+  padding: 10 0 10px;
   font-weight: bold;
   font-size: 18px;
 `;
@@ -185,6 +179,6 @@ const InstructionsWrapper = styled.div`
   margin-right: -15px;
 `;
 const Li = styled.div`
-  font-size: 14px;
+  font-size: 15px;
 `;
 export default DrinkCard;

@@ -12,6 +12,7 @@ const {
   getDrinksDetailsById,
   getRandomDrink,
   searchDrinkByNameOrIngredient,
+  getGlasses,
   // getFilterDrinkAlcoholOrNon,
   // getCategory,
 } = require('./handlers');
@@ -50,6 +51,7 @@ express()
   .get('/api/get-drinks-details/:id', getDrinksDetailsById)
   .get('/api/get-random-drink', getRandomDrink)
   .get('/api/searchDrinks/:value', searchDrinkByNameOrIngredient)
+  .get('/api/get-glasses/:glass', getGlasses)
   // .get('/api/filter-alcohol-non', getFilterDrinkAlcoholOrNon)
   // .get('/api/get-category/:category', getCategory)
 

@@ -59,18 +59,13 @@ const ListOfDrinks = () => {
   );
 };
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  gap: 5%;
+  margin: 4%;
 `;
 
-const Div = styled.div`
-  display: flex;
-`;
-const DivCard = styled.div`
-  margin: 20px;
-  max-width: 30%;
-  flex: 1 1 auto;
-`;
+const Div = styled.div``;
+const DivCard = styled.div``;
 
 export default ListOfDrinks;

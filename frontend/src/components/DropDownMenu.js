@@ -10,7 +10,7 @@ const DropDownMenu = ({ open }) => {
         <NavigationLink to='/alphabetical'>A-Z</NavigationLink>
         <NavigationLink to='/ingredients'>Ingredients</NavigationLink>
         <NavigationLink to='/glasses'>Glasses</NavigationLink>
-        <NavigationLink to='/name'>Name</NavigationLink>
+        {/* <NavigationLink to='/name'>Name</NavigationLink> */}
       </Ul>
     </Bar>
   );
@@ -18,7 +18,7 @@ const DropDownMenu = ({ open }) => {
 const Bar = styled.nav`
   display: flex;
   justify-content: flex-end;
-  margin-top: 350px;
+  margin-top: 336px;
   margin-right: -10px;
 `;
 const Div = styled.div`
@@ -39,7 +39,6 @@ const Ul = styled.ul`
   flex-flow: column nowrap;
 
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
-  transition: transform 0.3s ease-in-out;
 `;
 const NavigationLink = styled(NavLink)`
   cursor: pointer;

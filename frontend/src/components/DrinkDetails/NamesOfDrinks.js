@@ -9,7 +9,8 @@ const NamesOfDrinks = () => {
   const [drinks, setDrinks] = useState();
   // const [loading, setLoading] = useState(false);
   console.log('bahabhabaha', value);
-  const { items, loading, setLoading } = useContext(UserContext);
+  const { items } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   console.log('iteammsssss', items);
 
   useEffect(() => {

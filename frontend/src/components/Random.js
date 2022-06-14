@@ -3,32 +3,25 @@ import styled from 'styled-components';
 import { UserContext } from './UserContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import DrinkCard from './DrinkDetails/DrinkCard';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Random = () => {
   const [drink, setDrink] = useState({});
   const { user } = useAuth0();
   const [display, setDisplay] = useState(false);
-
-  const {
-    likedDrink,
-    setLikedDrink,
-    drinkId,
-    setDrinkId,
-    comment,
-    setComment,
-    loading,
-    setLoading,
-  } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
 
   const handleRandomDrink = () => {
-    setLoading(false);
+    setLoading(true);
+    setDisplay(false);
     fetch('/api/get-random-drink')
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data.status === 200) {
           setDrink(data.data);
-          setLoading(true);
+          setLoading(false);
           setDisplay(true);
           console.log(data.data);
         } else {
@@ -37,34 +30,7 @@ const Random = () => {
       });
   };
 
-  // const saveDrink = (e) => {
-  //   fetch(`/api/update-comments`, {
-  //     body: JSON.stringify({
-  //       user: user,
-  //       drinkId: drink.idDrink,
-  //       comment: '',
-  //     }),
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       // console.log(data, "second data");
-  //       if (data.status === 400) {
-  //         // setErrorMessage(data.message);
-  //         console.log('errordrinks');
-  //       } else if (data.status === 200) {
-  //         console.log('saved drink', data);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
-  return loading ? (
+  return !loading ? (
     <>
       <BigDiv>
         <Wrapper>
@@ -75,12 +41,14 @@ const Random = () => {
       </BigDiv>
     </>
   ) : (
-    'loading'
+    <Circular>
+      <CircularProgressbar />
+    </Circular>
   );
 };
 const BigDiv = styled.div`
   margin: auto;
-  margin-top: 120px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -95,23 +63,25 @@ const Wrapper = styled.div`
 const Title = styled.div`
   font-family: 'Lato', sans-serif;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const Button = styled.button`
   background-color: transparent;
   border: 3px solid black;
-  /* border-radius: 5px; */
   font-size: 16px;
   width: fit-content;
   height: 30px;
+  margin-bottom: 30px;
 
   &:hover {
     transform: scale(1.6);
-    background-color: #f35b04;
+    background-color: #f75c1a;
     color: white;
     border: none;
   }
 `;
-
+const Circular = styled.div`
+  width: 25px;
+`;
 export default Random;

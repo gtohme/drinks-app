@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
+import { useAuth0 } from '@auth0/auth0-react';
 import Burger from './Burger';
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
 import Profile from './Profile';
 
 const Header = () => {
+  const { user, isAuthenticated } = useAuth0();
   return (
     <BigDiv>
       <Wrapper>
@@ -16,10 +17,15 @@ const Header = () => {
           </Logolink>
           {/* <LogoutButton /> */}
         </LogoLogin>
-        <NavLink to='/profile'>
-          <ProfileButton>My Profile</ProfileButton>
-        </NavLink>
-        <LoginButton />
+        {isAuthenticated ? (
+          <NavLink to='/profile'>
+            <ProfileButton>My Profile</ProfileButton>
+          </NavLink>
+        ) : (
+          <Move>
+            <LoginButton />
+          </Move>
+        )}
 
         <Burger />
       </Wrapper>
@@ -33,18 +39,14 @@ const BigDiv = styled.div`
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 50px;
   padding: 20px;
   background-color: black;
   width: 100vw;
-  align-items: center;
-
   box-shadow: 0px 5px 16px -5px rgba(0, 0, 0, 0.5);
 `;
 const LogoLogin = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
 `;
 
@@ -70,7 +72,10 @@ const ProfileButton = styled.button`
   color: white;
   font-family: 'Zen Loop', cursive;
   font-size: 30px;
-  margin-right: 20px;
+  margin-right: 40px;
+`;
+const Move = styled.div`
+  margin-right: -70px;
 `;
 //object-fit: cover
 
